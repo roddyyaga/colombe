@@ -90,7 +90,7 @@ let test_1 () =
       ; "221 Closing connection." ]
       [ "EHLO gmail.com"
       ; "AUTH PLAIN"
-      ; Base64.encode_exn ~pad:true (Fmt.strf "\000romain\000foobar")
+      ; B64.encode_exn ~pad:true (Fmt.strf "\000romain\000foobar")
       ; "MAIL FROM:<romain.calascibetta@gmail.com>"
       ; "RCPT TO:<anil@recoil.org>"
       ; "DATA"
@@ -126,7 +126,7 @@ let test_2 () =
       ; "221 Closing connection." ]
       [ "EHLO gmail.com"
       ; "AUTH PLAIN"
-      ; Base64.encode_exn ~pad:true (Fmt.strf "\000romain\000foobar")
+      ; B64.encode_exn ~pad:true (Fmt.strf "\000romain\000foobar")
       ; "QUIT" ] in
   let authentication = 
     { Sendmail.mechanism= PLAIN
@@ -212,7 +212,7 @@ let test_5 () =
       ; "221 Closing connection." ]
       [ "EHLO gmail.com"
       ; "AUTH PLAIN"
-      ; Base64.encode_exn ~pad:true (Fmt.strf "\000romain\000foobar")
+      ; B64.encode_exn ~pad:true (Fmt.strf "\000romain\000foobar")
       ; "MAIL FROM:<romain.calascibetta@gmail.com> BODY=8BITMIME"
       ; "RCPT TO:<anil@recoil.org>"
       ; "DATA"
