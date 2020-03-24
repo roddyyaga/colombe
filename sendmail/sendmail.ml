@@ -116,11 +116,11 @@ let auth ctx mechanism info =
       | 334 ->
         let* () = match txts with
           | [] ->
-            let payload = B64.encode_exn (Fmt.strf "\000%s\000%s" username password) in
+            let payload = Base64.encode_exn (Fmt.strf "\000%s\000%s" username password) in
             send ctx Value.Payload payload
           | x :: _ ->
-            let x = B64.decode_exn x in
-            let payload = B64.encode_exn (Fmt.strf "%s\000%s\000%s" x username password) in
+            let x = Base64.decode_exn x in
+            let payload = Base64.encode_exn (Fmt.strf "%s\000%s\000%s" x username password) in
             send ctx Value.Payload payload in
         ( recv ctx Value.Code >>= function
             | (235, _txts) -> return `Authenticated
